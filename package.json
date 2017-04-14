@@ -1,0 +1,26 @@
+{
+  "name": "cacheable",
+  "version": "1.0.0",
+  "description": "minimal in memory completely volatile cache store with a \"stale concept\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"hahahahahahahaha\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dhigginbotham/cacheable.git"
+  },
+  "keywords": [
+    "cache"
+  ],
+  "author": "dhigginbotham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhigginbotham/cacheable/issues"
+  },
+  "homepage": "https://github.com/dhigginbotham/cacheable#readme",
+  "dependencies": {
+    "debug": "^2.6.3",
+    "ms": "^1.0.0"
+  }
+}
