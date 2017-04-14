@@ -12,7 +12,7 @@ test('verify initial object creation', (assert) => {
   assert.end();
 });
 
-test('verify stale and expired states', (assert) => {
+test('verify stale state', (assert) => {
   const { state, stale } = cacheable(store);
   assert.equal(state(), true, 'it should be expired to begin with');
   assert.equal(stale(), false, 'it shouldn\'t be stale to begin with');
@@ -21,7 +21,12 @@ test('verify stale and expired states', (assert) => {
 
   setTimeout(() => {
     assert.equal(stale(), true, 'verify that the stale state happens ~2/3 the ttl');
+    assert.end();
   }, 1000 * 0.65);
+});
+
+test('verify expired state', (assert) => {
+  const { state } = cacheable(store);
 
   setTimeout(() => {
     assert.equal(state(), true, 'verify expired happens when it should');
