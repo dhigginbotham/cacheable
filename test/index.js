@@ -8,8 +8,12 @@ const store = {
 };
 
 test('verify initial object creation', (assert) => {
-  const { expired, state, stale, reset, flush } = cacheable(store);
   assert.equal(store.ttl, '1s', 'Verify that the ttl is not mutated upon cache creation');
+  assert.end();
+});
+
+test('verify stale and expired states', (assert) => {
+  const { state, stale } = cacheable(store);
   assert.equal(state(), true, 'it should be expired to begin with');
   assert.equal(stale(), false, 'it shouldn\'t be stale to begin with');
 
