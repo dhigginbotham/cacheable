@@ -10,7 +10,7 @@ I built this because I had the need to store expensive and frequently called fun
 see below table for options:
 
 | key | required | summary |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `key` | `false` | key for debugging purposes, mostly |
 | `ttl` | `false` | defaults to 1 hour, uses the [`ms`](https://github.com/zeit/ms) module for easy formatting |
 | `cache` | `false` | defaults to an array, but will also support cleaning out objects |
