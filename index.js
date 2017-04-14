@@ -31,7 +31,9 @@ function cacheable(settings = {}) {
 
   /**
    * determine if cache state is expired
-   * @return { boolean } - value if cache is expired or not
+   * @param now { Number } - defaults to `Date.now`, but i can
+   * see maybe wanting to have control over that adhoc
+   * @return { Boolean } - value if cache is expired or not
    */
   function expired(now = Date.now()) {
     let isExpired = false;
@@ -51,8 +53,8 @@ function cacheable(settings = {}) {
 
   /**
    * reset's stale/ttl from ts provided with additional offset
-   * @param now - Defaults to `Date.now()`, however you can provide
-   * an future date, or a past date to do some funky stuff
+   * @param now { Number } - defaults to `Date.now`, but i can
+   * see maybe wanting to have control over that adhoc
    */
   function reset(now = Date.now()) {
     settings.ts = now;
@@ -63,7 +65,7 @@ function cacheable(settings = {}) {
 
   /**
    * determine cache size either by `Object.keys` or `Array.length`
-   * @return { number }
+   * @return { Number }
    */
   function size() {
     if (!(settings.hasOwnProperty('cache'))) flush();
@@ -74,8 +76,8 @@ function cacheable(settings = {}) {
 
   /**
    * determine if the cache state is stale
-   * @return { boolean } - value if cache is stale or not
-   * @param now { number } - defaults to now, but i can
+   * @return { Boolean } - value if cache is stale or not
+   * @param now { Number } - defaults to `Date.now`, but i can
    * see maybe wanting to have control over that adhoc
    */
   function stale(now = Date.now()) {
@@ -84,8 +86,8 @@ function cacheable(settings = {}) {
 
   /**
    * determines full cache state, if expired, we'll clean up
-   * @param logging { boolean } - whether or not we log cache state
-   * @return { boolean } - whether cache is expired or not
+   * @param logging { Boolean } - whether or not we log cache state
+   * @return { Boolean } - whether cache is expired or not
    */
   function state(logging = verbose) {
     const now = Date.now();
