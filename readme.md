@@ -37,7 +37,18 @@ const store = {
 const expired = cacheable(store).state; // pulls state out to manage state and check if expired
 const { stale, reset, flush } = cacheable(store); // other helpful tings
 
-// example usage for expensive or long running functions
+// simplest example usage
+function doSomethingExpensive(fn) {
+  if (!expired()) return fn(null, cache.store);
+  return funcToExpensiveThings((err, resp) => {
+    if (err) return fn(new Error(err), null);
+    store.cache = resp;
+    return fn(null, resp);
+  });
+}
+
+// example usage for expensive or long running functions with 
+// stale support
 function doSomethingExpensive(fn) {
   const isStale = stale();
   if (!expired() && !isStale) return fn(null, store.cache);
