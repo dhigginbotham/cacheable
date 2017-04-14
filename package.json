@@ -22,5 +22,13 @@
   "dependencies": {
     "debug": "^2.6.3",
     "ms": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "tape": "^4.6.3"
   }
 }
