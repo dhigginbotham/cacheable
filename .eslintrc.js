@@ -11,10 +11,10 @@ module.exports = {
     "no-underscore-dangle": 0,
     "max-len": 0,
     "camelcase": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "no-prototype-builtins": 0
   },
   "env": {
-    "node": true,
-    "mocha": true
+    "node": true
   }
 };

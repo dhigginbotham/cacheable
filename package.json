@@ -4,7 +4,7 @@
   "description": "minimal in memory completely volatile cache store with a \"stale concept\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"hahahahahahahaha\""
+    "test": "export DEBUG='cacheable*'; node test/index.js | faucet"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "faucet": "0.0.1",
     "tape": "^4.6.3"
   }
 }
