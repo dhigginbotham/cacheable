@@ -30,6 +30,8 @@ see below table for options:
 
 ## example
 ```js
+const { cacheable } = require('memory-cacheable');
+
 const store = {
   key: 'expensiveCacheExample',
   ttl: '1h'
