@@ -1,5 +1,5 @@
 # cacheable
-I built this because I had the need to store expensive and frequently called functions into memory.  It's not a framework for caches, it's not really a class, or a cache wrapper.  It's minimal, and encourages you to decide how you want to interact with the available states of your cached collections.  Really think of this as a function that keeps state of points in time, with a couple helpers to manage cached collections.
+I built this because I had the need to store expensive and frequently called functions into memory.  It's not a framework for caches, it's not really a class, or a cache wrapper.  It's minimal, and encourages you to decide how you want to interact with the available states of your cached collections.  Think of this as a function that keeps state of points in time, with a couple helpers to manage cached collections.
 
 ## install
 `npm install --save memory-cacheable`
