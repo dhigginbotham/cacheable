@@ -26,6 +26,7 @@ see below table for options:
 | `cacheable(store).size()` | gets the cache size, if an object `Object.keys()` is called |
 | `cacheable(store).stale()` | determines if the cache is stale or not |
 | `cacheable(store).state()` | returns whether the cache is expired or not, if cache is expired, `state` will `reset` and `flush` the cache |
+| `cacheable(store).reset()` | restarts timers, will not flush cache |
 
 ## example
 ```js
