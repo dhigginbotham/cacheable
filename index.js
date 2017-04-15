@@ -8,7 +8,7 @@ const ms = require('ms');
 
 function cacheable(settings = {}) {
   const { key = 'cacheable', ttl = '3h',
-    staleMaths = 0.65, verbose = false } = settings;
+    offset = 0.65, verbose = false } = settings;
 
   if (!(settings.hasOwnProperty('expires'))) settings.expires = 0;
   if (!(settings.hasOwnProperty('cache'))) settings.cache = [];
@@ -59,7 +59,7 @@ function cacheable(settings = {}) {
   function reset(now = Date.now()) {
     settings.ts = now;
     settings.expires = settings.ts + ms(ttl);
-    settings.stale = settings.ts + (ms(ttl) * staleMaths);
+    settings.stale = settings.ts + (ms(ttl) * offset);
     return true;
   }
 

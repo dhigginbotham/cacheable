@@ -6,7 +6,7 @@ I built this because I had the need to store expensive and frequently called fun
 
 ## api
 
-#### `cacheable({ key, cache, ttl, staleMaths, verbose })`
+#### `cacheable({ key, cache, ttl, offset, verbose })`
 see below table for options:
 
 | key | required | summary |
@@ -14,7 +14,7 @@ see below table for options:
 | `key` | `false` | key for debugging purposes, mostly |
 | `ttl` | `false` | defaults to 1 hour, uses the [`ms`](https://github.com/zeit/ms) module for easy formatting |
 | `cache` | `false` | defaults to an array, but will also support cleaning out objects |
-| `staleMaths` | `false` | defaults to `0.65`, is a multiplier of the ttl |
+| `offset` | `false` | defaults to `0.65` _(roughly 2/3 the `ttl`)_, used to create the stale value by multiplying the `ttl` by `offset` |
 | `verbose` | `false` | defaults to `false` turn this on for really noisey cache stats and debugging |
 
 ### cacheable api

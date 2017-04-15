@@ -1,6 +1,6 @@
 {
   "name": "memory-cacheable",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "minimal in memory completely volatile cache store with a \"stale concept\"",
   "main": "index.js",
   "scripts": {
