@@ -3,15 +3,15 @@ const ms = require('ms');
 
 /**
  * Volatile state/cache machine
- * @param { object } settings - Settings for cache
+ * @param { object } store - store for cache
  */
 
-function cacheable(settings = {}) {
+function cacheable(store = {}) {
   const { key = 'cacheable', ttl = '3h',
-    offset = 0.65, verbose = false } = settings;
+    offset = 0.65, verbose = false } = store;
 
-  if (!(settings.hasOwnProperty('expires'))) settings.expires = 0;
-  if (!(settings.hasOwnProperty('cache'))) settings.cache = [];
+  if (!(store.hasOwnProperty('expires'))) store.expires = 0;
+  if (!(store.hasOwnProperty('cache'))) store.cache = [];
 
   /**
    * debug logging on cache state
@@ -20,8 +20,8 @@ function cacheable(settings = {}) {
     const isExpired = expired(now);
     const isStale = stale(now);
     const cacheSize = size();
-    const expiresInSecs = Math.round((settings.expires - now) / 1000);
-    const staleInSecs = Math.round((settings.stale - now) / 1000);
+    const expiresInSecs = Math.round((store.expires - now) / 1000);
+    const staleInSecs = Math.round((store.stale - now) / 1000);
     const logger = { key, isStale, isExpired, cacheSize, expiresInSecs, staleInSecs };
     log(Object.keys(logger).reduce((arr, k) => {
       arr.push(`${k}:${logger[k]}:`);
@@ -38,7 +38,7 @@ function cacheable(settings = {}) {
   function expired(now = Date.now()) {
     let isExpired = false;
     const cacheSize = size();
-    if (now >= settings.expires || !cacheSize) isExpired = true;
+    if (now >= store.expires || !cacheSize) isExpired = true;
     return isExpired;
   }
 
@@ -47,7 +47,7 @@ function cacheable(settings = {}) {
    * on how you interact with it
    */
   function flush() {
-    settings.cache = Array.isArray(settings.cache) ? [] : {};
+    store.cache = Array.isArray(store.cache) ? [] : {};
     return true;
   }
 
@@ -57,9 +57,9 @@ function cacheable(settings = {}) {
    * see maybe wanting to have control over that adhoc
    */
   function reset(now = Date.now()) {
-    settings.ts = now;
-    settings.expires = settings.ts + ms(ttl);
-    settings.stale = settings.ts + (ms(ttl) * offset);
+    store.ts = now;
+    store.expires = store.ts + ms(ttl);
+    store.stale = store.ts + (ms(ttl) * offset);
     return true;
   }
 
@@ -68,10 +68,9 @@ function cacheable(settings = {}) {
    * @return { Number }
    */
   function size() {
-    if (!(settings.hasOwnProperty('cache'))) flush();
-    return Array.isArray(settings.cache)
-      ? settings.cache.length
-      : Object.keys(settings.cache).length;
+    return Array.isArray(store.cache)
+      ? store.cache.length
+      : Object.keys(store.cache).length;
   }
 
   /**
@@ -81,7 +80,24 @@ function cacheable(settings = {}) {
    * see maybe wanting to have control over that adhoc
    */
   function stale(now = Date.now()) {
-    return !expired() && now >= settings.stale;
+    return !expired() && now >= store.stale;
+  }
+
+  /**
+   * set the cache collection to provided param
+   * @param set { Object | Array } - sets cache to provided
+   * collection
+   */
+  function set(collection = []) {
+    store.cache = collection;
+  }
+
+  /**
+   * fetch's the cache related to the current store
+   * @return { Object | Array } - returns cached collection
+   */
+  function fetch() {
+    return store.cache;
   }
 
   /**
@@ -98,7 +114,7 @@ function cacheable(settings = {}) {
     return isExpired;
   }
 
-  return { debug, expired, flush, size, stale, state, reset };
+  return { debug, expired, fetch, flush, set, size, stale, state, reset };
 }
 
 module.exports = { cacheable };

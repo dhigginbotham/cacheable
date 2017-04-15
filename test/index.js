@@ -4,7 +4,8 @@ const { cacheable } = require('../');
 
 const store = {
   ttl: '1s',
-  key: 'testCache'
+  key: 'testCache',
+  offset: 0.65
 };
 
 test('verify initial object creation', (assert) => {
@@ -22,7 +23,7 @@ test('verify stale state', (assert) => {
   setTimeout(() => {
     assert.equal(stale(), true, 'verify that the stale state happens ~2/3 the ttl');
     assert.end();
-  }, 1000 * 0.65);
+  }, 1000 * store.offset);
 });
 
 test('verify expired state', (assert) => {
