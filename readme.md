@@ -39,7 +39,7 @@ const { stale, reset, flush } = cacheable(store); // other helpful tings
 
 // simplest example usage
 function doSomethingExpensive(fn) {
-  if (!expired()) return fn(null, cache.store);
+  if (!expired()) return fn(null, store.cache);
   return funcToExpensiveThings((err, resp) => {
     if (err) return fn(new Error(err), null);
     store.cache = resp;
