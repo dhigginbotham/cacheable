@@ -22,7 +22,9 @@ see below table for options:
 | --- | --- |
 | `cacheable(store).debug()` | debug logging, noisey, expensive stuff |
 | `cacheable(store).expired()` | check if cache state is expired |
+| `cacheable(store).fetch()` | fetches the cached collection |
 | `cacheable(store).flush()` | flush cache, supports `Objects` and `Arrays` |
+| `cacheable(store).set(collection)` | sets cached collection from provided param |
 | `cacheable(store).size()` | gets the cache size, if an object `Object.keys()` is called |
 | `cacheable(store).stale()` | determines if the cache is stale or not |
 | `cacheable(store).state()` | returns whether the cache is expired or not, if cache is expired, `state` will `reset` and `flush` the cache |
