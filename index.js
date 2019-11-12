@@ -7,11 +7,15 @@ const ms = require('ms');
  */
 
 function cacheable(store = {}) {
-  const { key = 'cacheable', ttl = '3h',
-    offset = 0.65, verbose = false } = store;
+  const {
+    key = 'cacheable',
+    ttl = '3h',
+    offset = 0.65,
+    verbose = false
+  } = store;
 
-  if (!(store.hasOwnProperty('expires'))) store.expires = 0;
-  if (!(store.hasOwnProperty('cache'))) store.cache = [];
+  if (!('expires' in store)) store.expires = 0;
+  if (!('cache' in store)) store.cache = [];
 
   /**
    * debug logging on cache state
@@ -22,7 +26,7 @@ function cacheable(store = {}) {
     const cacheSize = size();
     const expiresInSecs = Math.round((store.expires - now) / 1000);
     const staleInSecs = Math.round((store.stale - now) / 1000);
-    const logger = { key, isStale, isExpired, cacheSize, expiresInSecs, staleInSecs };
+    const logger = { key, isStale, isExpired, cacheSize, expiresInSecs, staleInSecs }; // eslint-disable-line
     log(Object.keys(logger).reduce((arr, k) => {
       arr.push(`${k}:${logger[k]}:`);
       return arr;
@@ -114,7 +118,7 @@ function cacheable(store = {}) {
     return isExpired;
   }
 
-  return { debug, expired, fetch, flush, set, size, stale, state, reset };
+  return { debug, expired, fetch, flush, set, size, stale, state, reset }; // eslint-disable-line
 }
 
 module.exports = { cacheable };

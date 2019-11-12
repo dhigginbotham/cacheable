@@ -4,7 +4,7 @@
   "description": "minimal in memory completely volatile cache store with a \"stale concept\"",
   "main": "index.js",
   "scripts": {
-    "test": "export DEBUG='cacheable*'; node test/index.js | faucet"
+    "test": "node test/index.js | faucet"
   },
   "repository": {
     "type": "git",
@@ -20,16 +20,18 @@
   },
   "homepage": "https://github.com/dhigginbotham/cacheable#readme",
   "dependencies": {
-    "debug": "^2.6.3",
-    "ms": "^1.0.0"
+    "debug": "^4.1.1",
+    "ms": "^2.1.2"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "acorn": "^7.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "faucet": "0.0.1",
-    "tape": "^4.6.3"
+    "tape": "^4.11.0"
   }
 }
